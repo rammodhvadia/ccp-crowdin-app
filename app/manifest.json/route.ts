@@ -36,6 +36,16 @@ export async function GET() {
           url: '/project-menu',
         },
       ],
+      'custom-file-format': [
+        {
+          key: 'custom-file-format',
+          type: 'custom-file-format',
+          url: '/api/file/process',
+          signaturePatterns: {
+            fileName: '.+\\.md$',
+          },
+        },
+      ],
     },
   };
 

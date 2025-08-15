@@ -44,6 +44,7 @@ const validateBuildFileRequest = (
   return { isValid: true };
 };
 
+//extracts source strings and build a preview
 const handleParseFile = async (body: ProcessRequestBody) => {
   const validation = validateCommonFields(body);
   if (!validation.isValid) {
@@ -64,6 +65,7 @@ const handleParseFile = async (body: ProcessRequestBody) => {
   });
 };
 
+//injects translations into the original structure
 const handleBuildFile = async (body: ProcessRequestBody) => {
   const commonValidation = validateCommonFields(body);
   if (!commonValidation.isValid) {
