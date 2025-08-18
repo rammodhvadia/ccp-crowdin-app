@@ -40,7 +40,7 @@ export async function GET() {
         {
           key: 'custom-file-format',
           type: 'custom-file-format',
-          url: '/process',
+          url: `${process.env.NEXT_PUBLIC_BASE_URL}/process`,
           signaturePatterns: {
             fileName: '.+\\.md$',
           },
