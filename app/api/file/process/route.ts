@@ -46,6 +46,7 @@ const validateBuildFileRequest = (
 
 //extracts source strings and build a preview
 const handleParseFile = async (body: ProcessRequestBody) => {
+  console.log('parseFile request body:', body);
   const validation = validateCommonFields(body);
   if (!validation.isValid) {
     return NextResponse.json({ error: { message: validation.error } }, { status: 400 });

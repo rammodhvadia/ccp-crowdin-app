@@ -10,16 +10,17 @@ import {
 } from './file-utils/types';
 import { uploadToBlob, exceedsMaxSize, generateUniqueFileName } from './file-utils/blob-storage';
 import { getContent, getStringsForExport, getTranslation } from './file-utils/content-processor';
-// function matchesTripleDash(str: string): boolean {
-//   const pattern = /^---.*?---$/;
-//   return pattern.test(str);
-// }
+function matchesTripleDash(str: string): boolean {
+  const pattern = /^---.*?---$/;
+  return pattern.test(str);
+}
 /**
  * Processes the input file and generates strings for translation
  * @param req The request to analyze the file
  * @returns Strings for translation and HTML preview
  */
 export async function parseFile(req: ParseFileRequest) {
+  console.log('Processing file:', req.file.name);
   const fileContent = await getContent(req.file);
   const hasTargetLanguage = req.targetLanguages?.[0]?.id != null;
 
@@ -27,11 +28,11 @@ export async function parseFile(req: ParseFileRequest) {
     fileContent,
     hasTargetLanguage && req.targetLanguages[0] ? req.targetLanguages[0].id : undefined
   );
-  // sourceStrings.forEach(entry => {
-  //   if (matchesTripleDash(entry.text)) {
-  //     entry.isHidden = true; // Hide entries with triple dashes
-  //   }
-  // });
+  sourceStrings.forEach(entry => {
+    if (matchesTripleDash(entry.text)) {
+      entry.isHidden = true; // Hide entries with triple dashes
+    }
+  });
 
   const previewHtml = await generatePreviewHtml(req.file.name || 'Unknown file', previewStrings);
 
