@@ -40,10 +40,9 @@ export async function GET() {
         {
           key: 'custom-file-format',
           type: 'custom-file-format',
-          url: '/api/file/process',
+          url: '/process',
           signaturePatterns: {
-            fileName: '.+\\.json$',
-            fileContent: '"hello_world":',
+            fileName: '.+\\.md$',
           },
         },
       ],
