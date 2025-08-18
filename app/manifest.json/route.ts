@@ -42,7 +42,8 @@ export async function GET() {
           type: 'custom-file-format',
           url: '/api/file/process',
           signaturePatterns: {
-            fileName: '.+\\.md$',
+            fileName: '.+\\.json$',
+            fileContent: '"hello_world":',
           },
         },
       ],
