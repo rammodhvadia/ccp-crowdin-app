@@ -116,6 +116,7 @@ const handleBuildFile = async (body: ProcessRequestBody) => {
  */
 export async function POST(request: NextRequest) {
   try {
+    console.log('Processing file request:', request.url);
     const body = (await request.json()) as ProcessRequestBody;
 
     if (!body.jobType) {
